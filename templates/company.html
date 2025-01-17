@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+<body>
+    <div class="container my-5">
+        <h1 class="text-center">{{ collection_name }} Documents</h1>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Transfer Type</th>
+                    <th>Pick Up Date</th>
+                    <th>Pick Up Time</th>
+                    <th>From</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in documents %}
+                <tr>
+                    <td>{{ doc['Transfer Type'] }}</td>
+                    <td>{{ doc['Pick Up Date'] }}</td>
+                    <td>{{ doc['Pick Up Time'] }}</td>
+                    <td>{{ doc['From'] }}</td>
+                    <td>
+                        <a href="{{ url_for('document_details', collection_name=collection_name, document_id=doc['id']) }}" 
+                           class="btn btn-sm btn-custom">
+                           View
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-4">Back to Companies</a>
+    </div>
+</body>
+
+</html>
